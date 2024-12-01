@@ -1,9 +1,8 @@
-<script lang="ts" setup>
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <h1>
-    前台首頁
+    前台 About
   </h1>
 </template>
 
