@@ -1,5 +1,5 @@
 {
-  "name": "day4-component-question",
+  "name": "day5-composable-question",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,7 +10,12 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "axios": "^1.7.4",
     "nuxt": "^3.12.4",
-    "vue": "latest"
+    "vue": "latest",
+    "vue-loading-overlay": "6.0"
+  },
+  "devDependencies": {
+    "sass": "^1.77.8"
   }
 }
