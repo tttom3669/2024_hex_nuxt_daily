@@ -1,10 +1,13 @@
-# Day 3 - 使用指令建立 Layouts 題目
 
-請 clone 這一份模板，完成以下條件 :
+# Day 4 - 使用指令建立元件 題目
 
-- 使用 Nuxt3 Layout 功能拆分前台與後台的頁首頁尾區塊
-- 前台 index.vue 與 about.vue 頁面皆使用 default.vue 模板 ( 預設 Layout ）
-- 後台 admin/index.vue 與 admin/order.vue 頁面皆使用 admin.vue 模板 ( 具名 Layout )
+![題目示意圖](image.png)
+
+請 clone 這一份模板， 完成以下條件 :
+- 將 components/ProductCard.vue  卡片的圖片、標題、價格、按鈕拆分成單獨的元件 ( 如圖 ) ，並且在 product/card 資料夾下進行管理。
+- ProductCard.vue 的 CSS 需要跟元件一起拆分。props 的資料需要傳入元件。
+- 在 pages/index.vue 的模板可以正常顯示卡片元件。
+
 
 ## 安裝
 
@@ -15,13 +18,13 @@ Node.js 版本建議為：`18.0.0` 以上
 ### 取得專案
 
 ```bash
-git clone -b day3-layout  https://github.com/jasonlu0525/nuxt3-live-question.git day3-layout-question
+git clone -b day4-component  https://github.com/jasonlu0525/nuxt3-live-question.git day4-component-question
 ```
 
 ### 移動到專案內
 
 ```bash
-cd  day3-layout-question
+cd  day4-component-question
 ```
 
 ### 安裝套件
