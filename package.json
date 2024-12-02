@@ -1,5 +1,5 @@
 {
-  "name": "day6-router-question",
+  "name": "day7-nested-router-question",
   "private": true,
   "type": "module",
   "scripts": {
@@ -12,11 +12,12 @@
   "dependencies": {
     "@nuxt/scripts": "^0.7.1",
     "@popperjs/core": "^2.11.8",
+    "axios": "^1.7.5",
     "bootstrap": "^5.3.3",
     "nuxt": "^3.12.4",
     "vue": "latest"
   },
   "devDependencies": {
-    "sass": "^1.70.0"
+    "sass": "1.70.0"
   }
 }

@@ -1,9 +1,7 @@
-<script setup lang="ts"></script>
+<script setup></script>
 
 <template>
-  <div>
-    <h1>首頁頁面</h1>
-  </div>
+  <h1>首頁頁面</h1>
 </template>
 
 <style scoped></style>

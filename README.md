@@ -1,27 +1,16 @@
-# Day 6 - NuxtLink 與 路由基礎配置 題目
+# Day 7 - 嵌套式路由、useRouter & useRoute 題目
 
-![題目示意圖](image.png)
+請 clone 這一份模板，將 `/pages/room.vue` 改為嵌套式路由，並實作房型列表與房型詳細頁面（不包含動態路由):
 
-請 clone 這一份模板，完成以下條件 :
+- 房型列表頁面的 URL 需對應 `/room/`，在此頁面使用 ES6 Fetch 或 axios 串接 [前台房型 API](https://nuxr3.zeabur.app/swagger/#/Rooms%20-%20%E6%88%BF%E5%9E%8B) ，將資料寫入 `roomList` 變數 ，並在模板的 v-for 使用 roomList 渲染資料。
+- 承上，模板的 HTML 、CSS 已有在 `/pages/room.vue` 中提供，需將其移至房型列表頁面並補上 API 串接的 JavaScript 。
+- 房型詳細頁面的 URL 需對應 `/room/_id` ，在此頁顯示 “房型詳細頁面” h2 標題。
+- 房型列表頁面的列表渲染之後，經點擊可以換頁至 `/room/_id` 。
 
-- 建立前台首頁 ( `index.vue` ) 以及房型頁面 (`room.vue`) 。前台首頁對應的路由路徑為 `/` ，房型頁面的路由路徑為`/room`。
-- 頁面上只需呈現純文字。前台首頁顯示 “首頁頁面” ，房型頁面 顯示“房型頁面”
+> 需注意 : `/room/_id` 的 `/_id` 是靜態路由，非動態路由，請建立名稱為 `_id.vue` 的檔案。
 
-```html
-<!-- 前台首頁 -->
-<template>
-  <h1>首頁頁面</h1>
-</template>
-
-<!-- /room 房型頁面 -->
-<template>
-  <h1>房型頁面</h1>
-</template>
-```
-
-- 將 app.vue 預設的 `<NuxtWelcome />` 歡迎改成可以顯示頁面的內容 。
-- 在 `layouts/default.vue` 的 Layout 中已有載入 Bootstrap5 SCSS 及 Navbar 元件。需在 `layouts/default.vue` 的 Navbar 加入 `<NuxtLink>` 元件，實現切換頁面的功能。
-- 修改路由預設的 `linkActiveClass` 和 `linkExactActiveClass` ，使 `<NuxtLink>` 匹配到路由的時候可以套用 Bootstrap5 的 `.active` class 。
+- 在房型詳細頁面中提供一個「回上一頁」的按鈕，點擊後可以使用 router 方法返回 `/room/` 的房型列表頁面。
+- 確保房型頁面的巢狀路由內容能正確顯示。
 
 ## 安裝
 
@@ -32,13 +21,13 @@ Node.js 版本建議為：`18.0.0` 以上
 ### 取得專案
 
 ```bash
-git clone -b day6-router  https://github.com/jasonlu0525/nuxt3-live-question.git day6-router-question
+git clone -b day7-nested-router  https://github.com/jasonlu0525/nuxt3-live-question.git day7-nested-router-question
 ```
 
 ### 移動到專案內
 
 ```bash
-cd  day6-router-question
+cd  day7-nested-router-question
 ```
 
 ### 安裝套件
