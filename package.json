@@ -1,5 +1,5 @@
 {
-  "name": "day5-composable-question",
+  "name": "day6-router-question",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,12 +10,13 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "axios": "^1.7.4",
+    "@nuxt/scripts": "^0.7.1",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
     "nuxt": "^3.12.4",
-    "vue": "latest",
-    "vue-loading-overlay": "6.0"
+    "vue": "latest"
   },
   "devDependencies": {
-    "sass": "^1.77.8"
+    "sass": "^1.70.0"
   }
 }
