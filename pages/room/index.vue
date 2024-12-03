@@ -1,54 +1,91 @@
 <script setup>
 const route = useRoute();
 const router = useRouter();
-const roomsList = ref([]);
 
-const apiUrl = 'https://nuxr3.zeabur.app/api/v1/rooms';
-const { data } = await useFetch(apiUrl);
-roomsList.value = data.value.result;
-console.log(data.value);
+useHead({
+  title: 'Freyja | 房型列表',
+  meta: [
+    {
+      name: 'description',
+      content:
+        '探索 Freyja 頂級房型，從景觀尊榮家庭房到尊爵雙人房，享受絕美市景與舒適空間。立即預訂，享受獨特的住宿體驗！',
+    },
 
-// fetch(apiUrl)
-//   .then((response) => {
-//     if (!response.ok) {
-//       throw new Error('取得房型資料失敗');
-//     }
-//     return response.json();
-//   })
-//   .then((data) => {
-//     const { result } = data;
-//     roomsList.value = result;
-//   })
-//   .catch((error) => {
-//     console.error('發生錯誤:', error);
-//   });
+    { property: 'og:title', content: 'Freyja | 高雄最頂級的旅館' },
+    {
+      property: 'og:description',
+      content:
+        '探索 Freyja 的高雄},級房型，從景觀尊榮家庭房到尊爵雙人房，享受絕美市景與舒適空間。立即預訂，享受獨特的住宿體驗！',
+    },
+    {
+      property: 'og:image',
+      content:
+        'https://raw.githubusercontent.com/hexschool/2022-web-layout-training/main/typescript-hotel/%E6%A1%8C%E6%A9%9F%E7%89%88/room2-1.png',
+    },
+    { property: 'og:url', content: 'https://freyja.travel.com.tw/room' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Freyja | 高雄最頂},的旅館' },
+    {
+      name: 'twitter:description',
+      content:
+        '探索 Freyja 的高雄},級房型，從景觀尊榮家庭房到尊爵雙人房，享受絕美市景與舒適空間。立即預訂，享受獨特的住宿體驗！',
+    },
+    {
+      name: 'twitter:image',
+      content:
+        'https://raw.githubusercontent.com/hexschool/2022-web-layout-training/main/typescript-hotel/%E6%A1%8C%E6%A9%9F%E7%89%88/room2-1.png',
+    },
+  ],
+
+  // 請在這裡作答定義以下 head 資訊的結構
+  /*
+    <title>Freyja | 房型列表</title>
+    <meta name="description" content="探索 Freyja 頂級房型，從景觀尊榮家庭房到尊爵雙人房，享受絕美市景與舒適空間。立即預訂，享受獨特的住宿體驗！">
+    <meta property="og:title" content="Freyja | 高雄最頂級的旅館">
+    <meta property="og:description" content="探索 Freyja 的高雄頂級房型，從景觀尊榮家庭房到尊爵雙人房，享受絕美市景與舒適空間。立即預訂，享受獨特的住宿體驗！">
+    <meta property="og:image" content="https://raw.githubusercontent.com/hexschool/2022-web-layout-training/main/typescript-hotel/%E6%A1%8C%E6%A9%9F%E7%89%88/room2-1.png">
+    <meta property="og:url" content="https://freyja.travel.com.tw/room">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Freyja | 高雄最頂級的旅館">
+    <meta name="twitter:description" content="探索 Freyja 的高雄頂級房型，從景觀尊榮家庭房到尊爵雙人房，享受絕美市景與舒適空間。立即預訂，享受獨特的住宿體驗！">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/hexschool/2022-web-layout-training/main/typescript-hotel/%E6%A1%8C%E6%A9%9F%E7%89%88/room2-1.png">
+  */
+});
+
+const { data: roomsList } = await useFetch('/rooms', {
+  baseURL: 'https://nuxr3.zeabur.app/api/v1',
+  transform: (response) => {
+    const { result } = response;
+    return result;
+  },
+  onResponseError({ response }) {
+    const { message } = response._data;
+    console.error('Error:', message);
+    router.push('/');
+  },
+});
 </script>
 
 <template>
-  <div>
-    <h2>房型 index {{ route.fullPath }}</h2>
-    <div class="container mt-4">
-      <div class="row justify-content-center gy-3">
+  <h2>房型 index {{ route.fullPath }}</h2>
+  <div class="container mt-4">
+    <div class="row justify-content-center gy-3">
+      <div class="col-8 col-md-6 col-lg-3" v-for="room in roomsList">
         <div
-          class="col-8 col-md-6 col-lg-3"
-          v-for="room in roomsList"
-          :key="room.id"
+          class="card h-100 shadow-sm"
+          @click="router.push(`/room/${room._id}`)"
         >
-          <div
-            class="card h-100 shadow-sm"
-            @click="router.push(`/room/${room._id}`)"
-          >
-            <img :src="room.imageUrl" class="card-img-top" alt="Room Image" />
-            <div class="card-body d-flex flex-column">
-              <h3 class="card-title">{{ room.name }}</h3>
-              <p class="card-text flex-grow-1">{{ room.description }}</p>
-              <ul class="list-unstyled">
-                <li><strong>面積:</strong> {{ room.areaInfo }}</li>
-                <li><strong>床型:</strong> {{ room.bedInfo }}</li>
-                <li><strong>最大容納人數:</strong> {{ room.maxPeople }}</li>
-                <li><strong>價格:</strong> {{ room.price }}</li>
-              </ul>
-            </div>
+          <img :src="room.imageUrl" class="card-img-top" alt="Room Image" />
+          <div class="card-body d-flex flex-column">
+            <h3 class="card-title">{{ room.name }}</h3>
+            <p class="card-text flex-grow-1">{{ room.description }}</p>
+            <ul class="list-unstyled">
+              <li><strong>面積:</strong> {{ room.areaInfo }}</li>
+              <li><strong>床型:</strong> {{ room.bedInfo }}</li>
+              <li><strong>最大容納人數:</strong> {{ room.maxPeople }}</li>
+              <li><strong>價格:</strong> {{ room.price }}</li>
+            </ul>
           </div>
         </div>
       </div>
