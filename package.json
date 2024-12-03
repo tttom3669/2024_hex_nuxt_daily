@@ -1,5 +1,5 @@
 {
-  "name": "day9-nuxt3-fetch-question",
+  "name": "day8-dynamic-router-answer",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,9 +10,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/scripts": "^0.7.1",
+    "@popperjs/core": "^2.11.8",
+    "axios": "^1.7.5",
     "bootstrap": "^5.3.3",
-    "nuxt": "^3.13.0",
-    "sweetalert2": "^11.12.4",
+    "nuxt": "^3.12.4",
     "vue": "latest"
   },
   "devDependencies": {
