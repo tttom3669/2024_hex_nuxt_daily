@@ -14,20 +14,14 @@ const userRegisteObject = ref({
 });
 const processRegistration = async (requsetBody) => {
   try {
-    const response = await $fetch("/v1/user/signup", {
-      baseURL: "https://nuxr3.zeabur.app/api",
+    await $fetch("/user/signup", {
+      baseURL: "https://nuxr3.zeabur.app/api/v1",
       method: "POST",
       body: {
         ...requsetBody,
       },
     });
-    await $swal.fire({
-      position: "center",
-      icon: "success",
-      title: "註冊成功",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+
     router.push("/login");
   } catch (error) {
     const { message } = error.response._data;
@@ -43,7 +37,7 @@ const processRegistration = async (requsetBody) => {
 </script>
 
 <template>
-  <div class="py-3 py-md-5 vh-100">
+  <div class="bg-light py-3 py-md-5 vh-100">
     <div class="container">
       <div class="row justify-content-md-center">
         <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6">
@@ -147,10 +141,17 @@ const processRegistration = async (requsetBody) => {
                   </div>
                 </div>
               </div>
-
-              <button class="btn btn-lg btn-primary w-100" type="submit">
-                註冊
-              </button>
+              <div class="d-flex gap-4">
+                <button class="btn btn-lg btn-primary w-50" type="submit">
+                  註冊
+                </button>
+                <NuxtLink
+                  to="/login"
+                  class="btn btn-lg btn-outline-primary w-50"
+                >
+                  已經有帳號
+                </NuxtLink>
+              </div>
             </form>
           </div>
         </div>

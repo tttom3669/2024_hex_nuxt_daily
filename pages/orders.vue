@@ -1,9 +1,11 @@
 <script setup>
-await navigateTo("/register");
+definePageMeta({
+  middleware: "auth",
+});
 </script>
 
 <template>
-  <div>Page: index</div>
+  <div>Page: orders</div>
 </template>
 
 <style scoped></style>
