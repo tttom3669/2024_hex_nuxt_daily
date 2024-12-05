@@ -3,7 +3,7 @@
 <template>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">Day14 題目</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -18,11 +18,11 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <NuxtLink class="nav-link" to="/">首頁</NuxtLink>
+            <NuxtLink class="nav-link" to="/register">註冊</NuxtLink>
           </li>
           <li class="nav-item">
-            <NuxtLink class="nav-link" to="/room" target="_blank"
-              >房型</NuxtLink
+            <NuxtLink class="nav-link" to="/login"
+              >登入</NuxtLink
             >
           </li>
         </ul>
