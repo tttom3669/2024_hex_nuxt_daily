@@ -1,23 +1,29 @@
-# Day 12 - useSeoMeta 與 useServerSeoMeta 題目
+# Day 13 - SEO Meta Components 題目
 
 請 clone 這一份模板，在 `/pages/room/[id].vue` 房型詳細頁面作答，完成以下條件 :
 
-- 在取得房型詳細資料的 `roomObject` 物件後，使用 `useSeoMeta` 將 `roomObject` 的資訊寫入 SEO Meta 。
-- 伺服器端提交給搜尋引擎爬蟲以及客戶端渲染的 SEO Meta 皆使用使用下方結構的標籤。請撰寫 useSeoMeta({ }) 渲染出下方的 HTML 結構，並將 `{{ }}` 替換成使用 roomObject 物件的資料。
-
-```
-
-<title> Freyja | {{ 房型名稱 }}</title>
-<meta name="description" content="{{ 房型描述 }}">
-<meta property="og:title" content="Freyja | {{ 房型名稱 }} ">
-<meta property="og:description" content="{{ 房型描述 }}">
-<meta property="og:image" content="{{房型主圖}}">
-<meta property="og:url" content="https://freyja.travel.com.tw/room/{房型 id }">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Freyja | {{ 房型名稱 }}">
-<meta name="twitter:description" content="{{ 房型描述 }}">
-<meta name="twitter:image" content="{{房型主圖}}">
-```
+- **改寫 SEO Meta 設定**：
+  - 將原本使用的 `useSeoMeta({ })` 方法，改為使用 Nuxt3 的 SEO 元件來渲染頁面的 Meta 標籤（如 `<Title>`、`<Meta>` 等）。
+  - 使用 `computed` 計算出所需的 SEO Meta 資訊，避免重複邏輯，並將這些資料應用到 SEO 元件中。
+  ```
+  /*
+  請將 useSeoMeta({ }) 改成 Nuxt3 SEO 元件的寫法
+  重複邏輯的地方可以使用 computed
+  */
+  useSeoMeta({
+    title: roomObject.value.name,
+    titleTemplate: (title) => `Freyja | ${title}`,
+    description: () => `${roomObject.value.description}`,
+    ogTitle: () => `Freyja | ${roomObject.value.name}`,
+    ogDescription: () => `${roomObject.value.description}`,
+    ogImage: () => `${roomObject.value.imageUrl}`,
+    ogUrl: () => `https://freyja.travel.com.tw/room/${roomObject.value._id}`,
+    twitterCard: "summary_large_image",
+    twitterTitle: () => `Freyja | ${roomObject.value.name}`,
+    twitterDescription: () => `${roomObject.value.description}`,
+    twitterImage: () => `${roomObject.value.imageUrl}`,
+  });
+  ```
 
 ## 安裝
 
@@ -28,13 +34,13 @@ Node.js 版本建議為：`18.0.0` 以上
 ### 取得專案
 
 ```bash
-git clone -b day12-useseometa-seo  https://github.com/jasonlu0525/nuxt3-live-question.git day12-useseometa-seo-question
+git clone -b day13-metacomponent-seo  https://github.com/jasonlu0525/nuxt3-live-question.git day13-metacomponent-seo-question
 ```
 
 ### 移動到專案內
 
 ```bash
-cd  day12-useseometa-seo-question
+cd  day13-metacomponent-seo-question
 ```
 
 ### 安裝套件
