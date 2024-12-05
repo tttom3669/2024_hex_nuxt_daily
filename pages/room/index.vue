@@ -3,66 +3,62 @@ const route = useRoute();
 const router = useRouter();
 
 useHead({
-  title: 'Freyja | 房型列表',
+  title: "Freyja | 房型列表",
   meta: [
     {
-      name: 'description',
+      name: "description",
       content:
-        '探索 Freyja 頂級房型，從景觀尊榮家庭房到尊爵雙人房，享受絕美市景與舒適空間。立即預訂，享受獨特的住宿體驗！',
-    },
-
-    { property: 'og:title', content: 'Freyja | 高雄最頂級的旅館' },
-    {
-      property: 'og:description',
-      content:
-        '探索 Freyja 的高雄},級房型，從景觀尊榮家庭房到尊爵雙人房，享受絕美市景與舒適空間。立即預訂，享受獨特的住宿體驗！',
+        "探索 Freyja 頂級房型，從景觀尊榮家庭房到尊爵雙人房，享受絕美市景與舒適空間。立即預訂，享受獨特的住宿體驗！",
     },
     {
-      property: 'og:image',
-      content:
-        'https://raw.githubusercontent.com/hexschool/2022-web-layout-training/main/typescript-hotel/%E6%A1%8C%E6%A9%9F%E7%89%88/room2-1.png',
-    },
-    { property: 'og:url', content: 'https://freyja.travel.com.tw/room' },
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'Freyja | 高雄最頂},的旅館' },
-    {
-      name: 'twitter:description',
-      content:
-        '探索 Freyja 的高雄},級房型，從景觀尊榮家庭房到尊爵雙人房，享受絕美市景與舒適空間。立即預訂，享受獨特的住宿體驗！',
+      property: "og:title",
+      content: "Freyja | 高雄最頂級的旅館",
     },
     {
-      name: 'twitter:image',
+      property: "og:description",
       content:
-        'https://raw.githubusercontent.com/hexschool/2022-web-layout-training/main/typescript-hotel/%E6%A1%8C%E6%A9%9F%E7%89%88/room2-1.png',
+        "探索 Freyja 的高雄頂級房型，從景觀尊榮家庭房到尊爵雙人房，享受絕美市景與舒適空間。立即預訂，享受獨特的住宿體驗！",
+    },
+    {
+      property: "og:image",
+      content:
+        "https://raw.githubusercontent.com/hexschool/2022-web-layout-training/main/typescript-hotel/%E6%A1%8C%E6%A9%9F%E7%89%88/room2-1.png",
+    },
+    {
+      property: "og:url",
+      content: "https://freyja.travel.com.tw/room",
+    },
+    {
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+    {
+      name: "twitter:title",
+      content: "Freyja | 高雄最頂級的旅館",
+    },
+    {
+      name: "twitter:description",
+      content:
+        "探索 Freyja 的高雄頂級房型，從景觀尊榮家庭房到尊爵雙人房，享受絕美市景與舒適空間。立即預訂，享受獨特的住宿體驗！",
+    },
+    {
+      name: "twitter:image",
+      content:
+        "https://raw.githubusercontent.com/hexschool/2022-web-layout-training/main/typescript-hotel/%E6%A1%8C%E6%A9%9F%E7%89%88/room2-1.png",
     },
   ],
-
-  // 請在這裡作答定義以下 head 資訊的結構
-  /*
-    <title>Freyja | 房型列表</title>
-    <meta name="description" content="探索 Freyja 頂級房型，從景觀尊榮家庭房到尊爵雙人房，享受絕美市景與舒適空間。立即預訂，享受獨特的住宿體驗！">
-    <meta property="og:title" content="Freyja | 高雄最頂級的旅館">
-    <meta property="og:description" content="探索 Freyja 的高雄頂級房型，從景觀尊榮家庭房到尊爵雙人房，享受絕美市景與舒適空間。立即預訂，享受獨特的住宿體驗！">
-    <meta property="og:image" content="https://raw.githubusercontent.com/hexschool/2022-web-layout-training/main/typescript-hotel/%E6%A1%8C%E6%A9%9F%E7%89%88/room2-1.png">
-    <meta property="og:url" content="https://freyja.travel.com.tw/room">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Freyja | 高雄最頂級的旅館">
-    <meta name="twitter:description" content="探索 Freyja 的高雄頂級房型，從景觀尊榮家庭房到尊爵雙人房，享受絕美市景與舒適空間。立即預訂，享受獨特的住宿體驗！">
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/hexschool/2022-web-layout-training/main/typescript-hotel/%E6%A1%8C%E6%A9%9F%E7%89%88/room2-1.png">
-  */
 });
 
-const { data: roomsList } = await useFetch('/rooms', {
-  baseURL: 'https://nuxr3.zeabur.app/api/v1',
+const { data: roomsList } = await useFetch("/rooms", {
+  baseURL: "https://nuxr3.zeabur.app/api/v1",
   transform: (response) => {
     const { result } = response;
     return result;
   },
   onResponseError({ response }) {
     const { message } = response._data;
-    console.error('Error:', message);
-    router.push('/');
+    console.error("Error:", message);
+    router.push("/");
   },
 });
 </script>

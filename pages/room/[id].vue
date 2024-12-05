@@ -2,100 +2,131 @@
 const router = useRouter();
 const route = useRoute();
 
-// 使用 useFetch 或是 useAsyncData 串接 API 取得房型詳細資料
-// API path : https://nuxr3.zeabur.app/api/v1/rooms/{id}
-// 將資料渲染至下方的 div.room-page 區塊
-
 const { id } = route.params;
 
 const { data: roomObject } = await useFetch(`/rooms/${id}`, {
-  baseURL: "https://nuxr3.zeabur.app/api/v1",
+  baseURL: 'https://nuxr3.zeabur.app/api/v1',
   transform: (response) => {
     const { result } = response;
     return result;
   },
   onResponseError({ response }) {
     const { message } = response._data;
-    console.error("Error:", message);
-    router.push("/");
+    console.error('Error:', message);
+    router.push('/');
   },
 });
 
+// 使用 useSeoMeta  將 roomObject 的資訊寫入 SEO Meta
+/* 請撰寫 useSeoMeta({ }) 渲染出下方的 HTML 結構，並將 {{ }}  改成使用 roomObject 物件的資料。
+<title> Freyja | {{ 房型名稱 }}</title>
+<meta name="description" content="{{ 房型描述 }}">
+<meta property="og:title" content="Freyja | {{ 房型名稱 }} ">
+<meta property="og:description" content="{{ 房型描述 }}">
+<meta property="og:image" content="{{房型主圖}}">
+<meta property="og:url" content="https://freyja.travel.com.tw/room/{房型 id }">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Freyja | {{ 房型名稱 }}">
+<meta name="twitter:description" content="{{ 房型描述 }}">
+<meta name="twitter:image" content="{{房型主圖}}">
+*/
+
+useSeoMeta({
+  title: `${roomObject.value.name}`,
+  description: `${roomObject.value.description}`,
+  ogTitle: `Freyja | ${roomObject.value.name}`,
+  ogDescription: `${roomObject.value.description}`,
+  ogImage: `${roomObject.value.imageUrl}`,
+  ogUrl: `https://freyja.travel.com.tw/room/${id}`,
+  twitterCard: `summary_large_image`,
+  twitterTitle: `Freyja | ${roomObject.value.name}`,
+  twitterDescription: `${roomObject.value.description}`,
+  twitterImage: `${roomObject.value.imageUrl}`,
+});
+
 const isProvide = function (isProvideBoolean = false) {
-  return isProvideBoolean ? "提供" : "未提供";
+  return isProvideBoolean ? '提供' : '未提供';
 };
 </script>
 
 <template>
-  <h2>房型詳細頁面</h2>
-  <div class="container">
-    <button @click="router.go(-1)">回上一頁</button>
-    <div class="row justify-content-center">
-      <div class="col-lg-6">
-        <div class="room-page">
-          <div class="room-header">
-            <h1 class="room-name">{{ roomObject.name }}</h1>
-            <p class="room-description">
-              {{ roomObject.description }}
-            </p>
-          </div>
-
-          <div class="room-gallery">
-            <img
-              :src="roomObject.imageUrl"
-              :alt="roomObject.name"
-              class="room-main-image"
-            />
-            <ul class="room-image-list">
-              <li v-for="(imageUrl, index) in roomObject.imageUrlList">
-                <img
-                  :src="imageUrl"
-                  :alt="`${roomObject.name}圖片${index + 1}`"
-                />
-              </li>
-            </ul>
-          </div>
-
-          <div class="room-info">
-            <div class="info-block">
-              <h2>房間資訊</h2>
-              <p>面積: {{ roomObject.areaInfo }}</p>
-              <p>床型: {{ roomObject.bedInfo }}</p>
-              <p>最多容納人數: {{ roomObject.maxPeople }}</p>
-              <p>價格: {{ roomObject.price }}</p>
+  <div>
+    <h2>房型詳細頁面</h2>
+    <div class="container">
+      <button @click="router.go(-1)">回上一頁</button>
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="room-page">
+            <div class="room-header">
+              <h1 class="room-name">{{ roomObject.name }}</h1>
+              <p class="room-description">
+                {{ roomObject.description }}
+              </p>
             </div>
 
-            <div class="info-block">
-              <h2>房間配置</h2>
-              <ul>
-                <li v-for="layout in roomObject.layoutInfo" :key="layout.title">
-                  {{ layout.title }}: {{ isProvide(layout.isProvide) }}
-                </li>
-              </ul>
-            </div>
-
-            <div class="info-block">
-              <h2>房內設施</h2>
-              <ul>
+            <div class="room-gallery">
+              <img
+                :src="roomObject.imageUrl"
+                :alt="roomObject.name"
+                class="room-main-image"
+              />
+              <ul class="room-image-list">
                 <li
-                  v-for="facility in roomObject.facilityInfo"
-                  :key="facility.title"
+                  v-for="(imageUrl, index) in roomObject.imageUrlList"
+                  :key="index"
                 >
-                  {{ facility.title }}: {{ isProvide(facility.isProvide) }}
+                  <img
+                    :src="imageUrl"
+                    :alt="`${roomObject.name}圖片${index + 1}`"
+                  />
                 </li>
               </ul>
             </div>
 
-            <div class="info-block">
-              <h2>客房備品</h2>
-              <ul>
-                <li
-                  v-for="amenity in roomObject.amenityInfo"
-                  :key="amenity.title"
-                >
-                  {{ amenity.title }}: {{ isProvide(amenity.isProvide) }}
-                </li>
-              </ul>
+            <div class="room-info">
+              <div class="info-block">
+                <h2>房間資訊</h2>
+                <p>面積: {{ roomObject.areaInfo }}</p>
+                <p>床型: {{ roomObject.bedInfo }}</p>
+                <p>最多容納人數: {{ roomObject.maxPeople }}</p>
+                <p>價格: {{ roomObject.price }}</p>
+              </div>
+
+              <div class="info-block">
+                <h2>房間配置</h2>
+                <ul>
+                  <li
+                    v-for="layout in roomObject.layoutInfo"
+                    :key="layout.title"
+                  >
+                    {{ layout.title }}: {{ isProvide(layout.isProvide) }}
+                  </li>
+                </ul>
+              </div>
+
+              <div class="info-block">
+                <h2>房內設施</h2>
+                <ul>
+                  <li
+                    v-for="facility in roomObject.facilityInfo"
+                    :key="facility.title"
+                  >
+                    {{ facility.title }}: {{ isProvide(facility.isProvide) }}
+                  </li>
+                </ul>
+              </div>
+
+              <div class="info-block">
+                <h2>客房備品</h2>
+                <ul>
+                  <li
+                    v-for="amenity in roomObject.amenityInfo"
+                    :key="amenity.title"
+                  >
+                    {{ amenity.title }}: {{ isProvide(amenity.isProvide) }}
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
