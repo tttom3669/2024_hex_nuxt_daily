@@ -1,5 +1,5 @@
 {
-  "name": "day16-plugin-provide-question",
+  "name": "day17-plugin-directive-question",
   "private": true,
   "type": "module",
   "scripts": {
