@@ -1,11 +1,20 @@
-# Day 15 - middleware 與登入狀態驗證 題目
+# Day 16 - Nuxt3 插件 ( Plugins )  - provide 題目
 
-請 clone 這一份模板，在 `/pages/login.vue` 與 `/pages/orders.vue` 作答，在登入後檢查帳號是否為登入狀態 :
+請 clone 這一份模板，完成以下條件 :
 
-- 在 `/login`頁面登入成功後，使用 router 導航至 `/orders` 頁面。
-- 在進入 `/orders` 頁面之前使用名稱為 “auth” 的具名 middleware 驗證登入狀態。
-- 驗證登入需使用旅館的 [/api/v1/user/check](https://nuxr3.zeabur.app/swagger/#/Users%20-%20%E4%BD%BF%E7%94%A8%E8%80%85/get_api_v1_user_check) API ，並使用 try catch 捕捉錯誤 。
-- 驗證成功，允許進入 `/orders` 頁面。驗證失敗，將路由導航回 `/login` 頁面。
+- 使用 Nuxt3 Plugin 功能在 `/plugins/bootstrap.js` 引入 `bootstrap5 v5.3.3` 版本`Offcanvas` 與 `Modal` 元件的 JavaScript 功能，並將 `new bootstrap.Offcanvas()` 與 `new bootstrap.Modal()` 提供為全域輔助函式。( [Modal 官方文件](https://getbootstrap.com/docs/5.3/components/modal/#methods) 、 [Offcanvas 官方文件](https://getbootstrap.com/docs/5.3/components/offcanvas/#how-it-works))
+
+```jsx
+// 加入全域輔助函式
+
+new bootstrap.Offcanvas(element, options);
+new bootstrap.Modal(element, options);
+```
+
+- 在 `/pages/index.vue` 中，從 Plugin 取出 `Offcanvas` 和 `Modal` 並在 onMounted 生命週期初始化元件。使用 `<template>` 中的按鈕，透過 `@click` 事件來操作元件的 `.show()` 和 `.hide()` 方法，以控制元件的開啟與關閉。
+- bootstrap5 SCSS 在模板中已經有提供，不需額外設定。
+- 請根據下圖 bootstrap5 v5.3.3 Modal 功能的 [原始碼](https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.js) 判斷 Plugin 是否需要限制插件的執行環境（伺服器端或客戶端，或是無需限制）。
+  ![題目示意圖](image.png)
 
 ## 安裝
 
@@ -16,13 +25,13 @@ Node.js 版本建議為：`18.0.0` 以上
 ### 取得專案
 
 ```bash
-git clone -b day15-nuxt3-middleware  https://github.com/jasonlu0525/nuxt3-live-question.git day15-nuxt3-middleware-question
+git clone -b  day16-plugin-provide   https://github.com/jasonlu0525/nuxt3-live-question.git day16-plugin-provide-question
 ```
 
 ### 移動到專案內
 
 ```bash
-cd  day15-nuxt3-middleware-question
+cd  day16-plugin-provide-question
 ```
 
 ### 安裝套件
