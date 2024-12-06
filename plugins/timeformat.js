@@ -15,7 +15,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       const minutes = formatNum(date.getMinutes());
       const seconds = formatNum(date.getSeconds());
 
-      // String.prototype.padStart()
       el.textContent = `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`;
     },
   });
