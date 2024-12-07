@@ -1,5 +1,5 @@
 {
-  "name": "day21-vee-validate-question",
+  "name": "day22-swiper-question",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,15 +10,13 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@vee-validate/i18n": "^4.13.2",
-    "@vee-validate/nuxt": "^4.13.2",
-    "@vee-validate/rules": "^4.13.2",
     "bootstrap": "^5.3.3",
-    "nuxt": "3.12.4",
-    "vue": "latest",
+    "nuxt": "^3.12.4",
+    "swiper": "^11.1.14",
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@iconify/vue": "^4.1.2",
     "sass": "1.70"
   }
 }

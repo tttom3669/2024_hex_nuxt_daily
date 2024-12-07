@@ -7,14 +7,5 @@ export default defineNuxtConfig({
       linkActiveClass: "active",
       linkExactActiveClass: "active",
     },
-  },
-  modules: ["@vee-validate/nuxt"],
-  veeValidate: {
-    // 修改 VeeValidate 元件的名稱
-    componentNames: {
-      Form: "VForm",
-      Field: "VField",
-      ErrorMessage: "VErrorMessage",
-    },
-  },
+  }
 });
