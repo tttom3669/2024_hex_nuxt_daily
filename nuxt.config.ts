@@ -9,5 +9,5 @@ export default defineNuxtConfig({
       linkExactActiveClass: "active",
     },
   },
-  modules:["@pinia/nuxt"],
+  modules: ["@pinia/nuxt"],
 });

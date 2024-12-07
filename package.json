@@ -1,5 +1,5 @@
 {
-  "name": "day19-pinia-question",
+  "name": "day20-pinia-api-question",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,13 +14,12 @@
     "bootstrap": "^5.3.3",
     "nuxt": "^3.13.0",
     "pinia": "^2.2.2",
-    "vue": "latest",
-    "vue-router": "latest"
-  },
-  "overrides": {
     "vue": "latest"
   },
   "devDependencies": {
-    "sass": "1.70"
+    "sass": "1.70.0"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }

@@ -1,7 +1,9 @@
+<script setup></script>
+
 <template>
   <div>
-    <NuxtRouteAnnouncer />
     <NuxtLayout>
+      <NuxtRouteAnnouncer />
       <NuxtPage />
     </NuxtLayout>
   </div>
