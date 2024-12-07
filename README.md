@@ -1,37 +1,27 @@
-# Day 20 - Nuxt3 狀態管理 - Pinia - ( 2 ) 題目
-
-根據最終任務訂房網站 [設計稿](https://www.figma.com/design/6pTFrdb5a1lYKmMnFeT5Mf/%E5%85%AD%E8%A7%92-Project-%2F-%E9%85%92%E5%BA%97%E8%A8%82%E6%88%BF%E7%B6%B2%E7%AB%99?t=wmvFC4GdPPgblvwT-0) ，在訂房流程中，當使用者在「房型詳細頁」點擊「立即預訂」按鈕後需呈現該房型的詳細資訊。因此需要將房型詳細資料加入全域狀態管理。
+# Day 21 - VeeValidate 表單驗證套件運用 題目
 
 請 clone 這一份模板，完成以下條件 :
 
-- 在 `/pages/room.vue` 的房型列表中，點擊房型進入房型詳細頁（`/pages/room/[id].vue`），將取得的房型資料寫入 Pinia Store ，並渲染於頁面模板。
+- 將 `/pages/index.vue` 中的表單改成使用 VeeValidate 驗證。
 
-```jsx
-// 將房型資料 data 改成使用 Pinia 管理
-const { data, error } = await useAsyncData(`room-data`, async () => {
-  const response = await $fetch(`/rooms/${id}`, {
-    baseURL: "https://nuxr3.zeabur.app/api/v1",
-  });
-  return response.result;
-});
-```
+  - 所有欄位必需進行驗證，要求如下 :
 
-- 在房型詳細頁點擊「立即預訂」按鈕後，導向 `/pages/booking.vue` 預約頁面。在此頁面中，將房型資料從 Pinia Store 取出，渲染於頁面模板。
+    1. 所有欄位都必需填寫。
+    2. 姓名欄位需要填寫至少 2 個字元。
+    3. 手機號碼欄位需要符合下方正規表達式的格式 :
 
-```jsx
-// /pages/booking.vue
+       ```html
+       /^(09)[0-9]{8}$/
+       ```
 
-<script setup>
-  // 將 bookingInfo 改成使用 Pinia 的資料 const bookingInfo = ref({});
-</script>
-```
+  - 欄位驗證失敗時套用 Bootstrap 5 的 `is-invalid` 樣式。
+  - 使用 VeeValidate 的元件顯示驗證失敗的訊息。
+  - 透過 submit 事件處理表單提交。提交後使用 VeeValidate 的 resetForm 方法將表單重置。
 
-- 補充，Pinia Store 的檔案已於 `stores/booking.js` 提供，請將匯出的 Store 名稱命名為 `useBookingStore` 。
-
-```jsx
-/stores/booking.js
-// export const useBookingStore =
-```
+- 模板已有安裝 VeeValidate 表單驗證所需套件，將 `@vee-validate/nuxt` 、驗證規則以及多國語系整合至 Nuxt3。以下是套件在使用上的細節 :
+  - 表單驗證元件的名稱沒有限制，可以使用預設的元件 ( 如 `<Form>` ) 或是自訂元件名稱。
+  - 不需載入所有驗證規則，只需載入表單所需的規則即可。
+  - 多國語系的語言需使用繁體中文 ( zhTW )。
 
 ## 安裝
 
@@ -42,13 +32,13 @@ Node.js 版本建議為：`18.0.0` 以上
 ### 取得專案
 
 ```bash
-git clone -b day20-pinia-api  https://github.com/jasonlu0525/nuxt3-live-question.git day20-pinia-api-question
+git clone -b day21-vee-validate  https://github.com/jasonlu0525/nuxt3-live-question.git day21-vee-validate-question
 ```
 
 ### 移動到專案內
 
 ```bash
-cd day20-pinia-api-question
+cd day21-vee-validate-question
 ```
 
 ### 安裝套件
