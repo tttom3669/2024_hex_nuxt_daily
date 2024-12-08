@@ -3,7 +3,7 @@
 <template>
   <nav class="navbar bg-body-tertiary">
     <div class="container">
-      <NuxtLink class="navbar-brand" to="/">Day22 題目</NuxtLink>
+      <NuxtLink class="navbar-brand" to="/">Day23 題目</NuxtLink>
     </div>
   </nav>
   <slot />

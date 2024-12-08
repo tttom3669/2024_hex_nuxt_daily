@@ -1,35 +1,16 @@
-# Day 22 - Swiper 輪播套件運用 題目
+# Day 23 - VCalendar 套件運用 題目
 
 請 clone 這一份模板，完成以下條件 :
 
-- 在 `/pages/index.vue` 中，已使用 `useFetch()` 取得房型列表並透過 `v-for` 渲染。然而在模板第 17 ~ 19 行的 `imageUrlList` 缺少了呈現房型多圖的輪播功能，請使用 Swiper.js 來完成圖片輪播功能 ( Swiper.js 已包含在模板內，npm install 安裝後即可使用 ) 。
-- 輪播需要包含以下功能 :
-  - 需要使用頁碼 ( pagination ) 、導航 ( navigation ) 與自動撥放功能。
-  - 頁碼 : 使用 bullets 的外觀，並能透過點擊頁碼切換輪播項目。
-  - 導航: 可以通過前後按鈕導航輪播項目。
-  - 自動撥放功能的延遲時間為 5 秒。
-  - 允許輪播項目循環播放。
-  - 每次顯示 1 個輪播項目。
-- 補充，模板有預先在 `plugins/iconify.js` 載入 `iconify/vue` 套件，透過全域元件的方式呈現房型資訊區塊的 icon。 `/pages/index.vue` 可以使用 `<Icon icon=""/>` 元件，在 icon 屬性填入 icon 的名稱，例如 [material-symbols:king-bed](https://icon-sets.iconify.design/material-symbols/king-bed/) :
-
-```jsx
-// 安裝
-// 官方文件 : https://iconify.design/docs/icon-components/vue/#installation
-npm install --save-dev @iconify/vue
-
-// plugins/iconify.js
-// 將 Icon 的功能加入到 Nuxt 插件註冊全域元件
-
-import { Icon } from '@iconify/vue';
-
-export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.vueApp.component('Icon', Icon);
-});
-
-// pages/index.vue
-// 使用 icon
-<Icon class="mb-2" icon="material-symbols:king-bed" />
-```
+- 模板中的 `package.json` 已包含 VCalendar 套件，請將它安裝並整合到 Nuxt3 中。
+- 請在 `/pages/index.vue` 作答，完成以下日曆選取功能的設定 :
+  - 在 767px 以下的手機版型顯示 1 欄 1 列 ；在 768px 以上的平板與電腦版型顯示 2 欄 1 列。此功能需要使用 [vue-screen-utils](https://github.com/nathanreyes/vue-screen-utils) 套件進行響應式調整，該套件已在 `package.json` 中提供。
+  - 在 767px 以下的手機版型，日曆元件的寬度呈現滿寬。
+  - 日曆標題在 767px 以下置中對齊，768px 以上靠左對齊。
+  - 日曆標題的日期格式需顯示`「西元 YYYY 年 MM 月」`。選取日期的格式需調整為 `"YYYY-MM-DD"`（年-月-日）。
+  - 日曆初始化時，預設的起始日期為當天，結束日期為當天的下一天。例如，當前日期為 12 月 1 日，則預設起始日期為 12 月 1 日，結束日期為 12 月 2 日。取得下一天日期的方法可以考這一篇 [文章](https://www.cythilya.tw/2017/05/17/javascript-date-add-days/) 。
+  - 限制選取日期範圍，最早可選當天，最晚可選下一年的同一天。例如，當前日期是 2024 年 12 月 1 日，最早可選 2024 年 12 月 1 日，最晚可選 2025 年 12 月 1 日。
+  - 使用 CSS 變數覆蓋 VCalendar 套件的預設樣式，將選取日期的背景顏色修改為 `#000000`，選取區間的背景顏色修改為 `#f9f9f9`。
 
 ## 安裝
 
@@ -40,13 +21,13 @@ Node.js 版本建議為：`18.0.0` 以上
 ### 取得專案
 
 ```bash
-git clone -b day22-swiper  https://github.com/jasonlu0525/nuxt3-live-question.git day22-swiper-question
+git clone -b day23-vcalendar  https://github.com/jasonlu0525/nuxt3-live-question.git day23-vcalendar-question
 ```
 
 ### 移動到專案內
 
 ```bash
-cd day22-swiper-question
+cd day23-vcalendar-question
 ```
 
 ### 安裝套件
