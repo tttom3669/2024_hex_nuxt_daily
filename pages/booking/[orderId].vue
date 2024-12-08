@@ -1,12 +1,11 @@
 <script setup>
 const orderInfo = ref({});
 const route = useRoute();
-const bookingStore = useBookingStore();
-const { setOrderInfo, getOrderInfo } = bookingStore;
 const cookie = useCookie('accountToken');
+const { orderId } = route.params;
 
 const { data } = await useAsyncData('order', () =>
-  $fetch(`/api/v1/orders/${route.params.orderId}`, {
+  $fetch(`/api/v1/orders/${orderId}`, {
     baseURL: 'https://nuxr3.zeabur.app',
     method: 'GET',
     headers: {
@@ -15,11 +14,8 @@ const { data } = await useAsyncData('order', () =>
   })
 );
 
-setOrderInfo(data.value.result);
+orderInfo.value = data.value?.result
 
-onMounted(() => {
-  orderInfo.value = getOrderInfo();
-});
 </script>
 
 <template>

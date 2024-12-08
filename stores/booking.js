@@ -15,19 +15,11 @@ export const useBookingStore = defineStore('booking', () => {
   const getBookingInfo = () => {
     return bookingInfo.value;
   };
-  const setOrderInfo = (info) => {
-    orderInfo.value = info;
-  };
-  const getOrderInfo = () => {
-    return orderInfo.value;
-  };
 
   return {
     setRoomInfo,
     setBookingInfo,
     getRoomInfo,
     getBookingInfo,
-    setOrderInfo,
-    getOrderInfo,
   };
 });
